@@ -16,3 +16,42 @@ img {
   display: block;
   max-width: 100%;
 }
+.form {
+  display: flex;
+  font-size: 32px;
+  font-weight: 500;
+  color: blue;
+}
+.button-create {
+  background-color: blue;
+  color: aqua;
+  border-radius: 15px;
+  font-weight: 700;
+  border-color: aqua;
+}
+.timer {
+  display: flex;
+  column-gap: 50px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.value {
+  font-size: 50px;
+  font-family: 500;
+  color: blue;
+}
+#datetime-picker {
+  background-color: aqua;
+  color: blue;
+  font-size: 32px;
+  text-align: center;
+}
+.button-start {
+  background-color: blue;
+  border-radius: 15px;
+  padding: 10px 32px;
+  color: aqua;
+}
