@@ -2,22 +2,6 @@ import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import Notiflix from 'notiflix';
 
-const options = {
-  enableTime: true,
-  time_24hr: true,
-  defaultDate: new Date(),
-  minuteIncrement: 1,
-  onClose(selectedDates) {
-    if (selectedDates[0] <= Date.now()) {
-      Notiflix.Notify.warning('Please choose a date in the future');
-      btnStart.setAttribute('disabled', 'disabled');
-    } else {
-      btnStart.removeAttribute('disabled');
-      console.log(selectedDates[0]);
-    }
-  },
-};
-
 const inputData = document.querySelector('#datetime-picker');
 const btnStart = document.querySelector('[data-start]');
 const dayClock = document.querySelector('[data-days]');
@@ -30,7 +14,24 @@ let ms = null;
 let intervalId = null;
 
 btnStart.addEventListener('click', onStartTimer);
+btnStart.setAttribute('disabled', 'disabled');
+btnStart.style.backgroundColor = 'gray';
 
+const options = {
+  enableTime: true,
+  time_24hr: true,
+  defaultDate: new Date(),
+  minuteIncrement: 1,
+  onClose(selectedDates) {
+    if (selectedDates[0] <= Date.now()) {
+      Notiflix.Notify.failure('Please choose a date in the future');
+    } else {
+      btnStart.removeAttribute('disabled');
+      btnStart.style.backgroundColor = 'blue';
+      console.log(selectedDates[0]);
+    }
+  },
+};
 function onStartTimer() {
   intervalId = setInterval(() => {
     ms = new Date(inputData.value) - Date.now();

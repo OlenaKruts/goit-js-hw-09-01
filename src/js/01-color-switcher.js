@@ -3,9 +3,14 @@ const btnStop = document.querySelector('[data-stop]');
 const bodyColor = document.querySelector('body');
 
 let intervalId = null;
+
 btnStart.addEventListener('click', onStartClick);
+btnStop.setAttribute('disabled', 'disabled');
+
 function onStartClick(event) {
   btnStart.setAttribute('disabled', 'disabled');
+  btnStop.removeAttribute('disabled');
+
   intervalId = setInterval(() => {
     bodyColor.style.backgroundColor = getRandomHexColor();
   }, 1000);
@@ -13,6 +18,7 @@ function onStartClick(event) {
 btnStop.addEventListener('click', onStopClick);
 function onStopClick(event) {
   btnStart.removeAttribute('disabled');
+  btnStop.setAttribute('disabled', 'disabled');
   clearInterval(intervalId);
 }
 

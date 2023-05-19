@@ -55,3 +55,6 @@ img {
   padding: 10px 32px;
   color: aqua;
 }
+.button-start .disabled {
+  background-color: gray;
+}
