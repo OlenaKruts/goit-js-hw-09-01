@@ -3,6 +3,8 @@ import 'flatpickr/dist/flatpickr.min.css';
 import Notiflix from 'notiflix';
 
 const inputData = document.querySelector('#datetime-picker');
+//inputData.reset();
+//console.log(inputData.value);
 const btnStart = document.querySelector('[data-start]');
 const dayClock = document.querySelector('[data-days]');
 const hoursClock = document.querySelector('[data-hours]');
@@ -28,22 +30,24 @@ const options = {
     } else {
       btnStart.removeAttribute('disabled');
       btnStart.style.backgroundColor = 'blue';
-      console.log(selectedDates[0]);
+      //console.log(selectedDates[0]);
     }
   },
 };
 function onStartTimer() {
+  btnStart.setAttribute('disabled', 'disabled');
+  btnStart.style.backgroundColor = 'gray';
   intervalId = setInterval(() => {
     ms = new Date(inputData.value) - Date.now();
+    if (ms < 0) {
+      clearInterval(intervalId);
+      return;
+    }
     const { days, hours, minutes, seconds } = convertMs(ms);
     dayClock.textContent = addLeadingZero(`${days}`);
     hoursClock.textContent = addLeadingZero(`${hours}`);
     minutesClock.textContent = addLeadingZero(`${minutes}`);
     secondsClock.textContent = addLeadingZero(`${seconds}`);
-    console.log(ms);
-    if (ms < 1000) {
-      clearInterval(intervalId);
-    }
   }, 1000);
 }
 
